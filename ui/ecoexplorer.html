@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EcoExplorer</title>
+  <style>
+    body { font-family: sans-serif; background: #111; color: #eee; padding: 20px; }
+    h1 { color: #00ffcc; }
+    .card { background: #222; padding: 10px; margin: 10px 0; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>🌐 EcoExplorer</h1>
+  <div class="card" id="wallets">Loading wallets...</div>
+  <div class="card" id="state">Loading state...</div>
+
+  <script>
+    async function loadStatus() {
+      const res = await fetch("http://localhost:8080/status");
+      const data = await res.json();
+      document.getElementById("wallets").innerHTML = `
+        <h2>💰 Wallets</h2>
+        <p>ZSONA: ${data.zsona_wallet}</p>
+        <p>DSN: ${data.dsn_wallet}</p>
+        <p>XMR: ${data.xmr_wallet}</p>
+      `;
+    }
+
+    async function loadState() {
+      const res = await fetch("http://localhost:7070/state");
+      const data = await res.json();
+      document.getElementById("state").innerHTML = `
+        <h2>📊 Stato</h2>
+        <p>Nickname: ${data.nickname}</p>
+        <p>Bilancio: ${data.zsona_balance}</p>
+        <p>Worker: ${data.workers.join(", ")}</p>
+        <p>Nodi: ${

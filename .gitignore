@@ -1,0 +1,6 @@
+*.zip
+*.log
+*.pyc
+__pycache__/
+wallet_*.txt
+credentials.txt
