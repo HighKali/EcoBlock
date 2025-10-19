@@ -1,0 +1,11 @@
+{
+  "nickname": "kali13",
+  "zsona_balance": 1000000,
+  "dsn_balance": 0,
+  "xmr_balance": 0,
+  "contacts": [],
+  "nodes": [
+    "localhost:8080"
+  ],
+  "workers": []
+}
