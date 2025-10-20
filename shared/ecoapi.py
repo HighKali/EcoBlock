@@ -1,3 +1,4 @@
-print("🌐 Collegamento VPS / nodi remoti (placeholder)")
-# Inserisci qui chiamate API o sincronizzazione remota
-print("✅ Collegamento completato")
+#!/usr/bin/env python3
+def api_status():
+    print("✅ ecoapi.py attivo — API placeholder")
+api_status()

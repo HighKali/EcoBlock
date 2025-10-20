@@ -1,1 +1,7 @@
-function showNotification(message, type = "info") {\n const box = document.createElement("div");\n box.className = `eco-notify ${type}`;\n box.innerText = message;\n document.body.appendChild(box);\n setTimeout(() => box.remove(), 4000);\n}
+function showNotification(message, type = "info") {
+  const box = document.createElement("div");
+  box.className = `eco-notify ${type}`;
+  box.innerText = message;
+  document.body.appendChild(box);
+  setTimeout(() => box.remove(), 4000);
+}
