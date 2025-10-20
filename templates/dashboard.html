@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🌐 EcoBlock Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🌍 EcoBlock VPS Panel</h1>
+    <div class="modules">
+      <div class="module">🧠 GeoBlock: <span class="status">Attivo</span></div>
+      <div class="module">⚡ EcoEntropy: <span class="status">Pronto</span></div>
+      <div class="module">🧹 EcoPurge: <span class="status">In standby</span></div>
+      <div class="module">🗺️ EcoMap: <span class="status">Sincronizzato</span></div>
+    </div>
+    <p class="timestamp">🕒 Ultimo avvio: {{ timestamp }}</p>
+    <div class="auth">
+      <a href="/login" class="btn">Login</a>
+      <a href="/signup" class="btn">Signup</a>
+    </div>
+  </div>
+</body>
+</html>

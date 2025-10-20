@@ -1,0 +1,41 @@
+body {
+  background: linear-gradient(to right, #000428, #004e92);
+  font-family: 'Courier New', monospace;
+  color: #00ffcc;
+  text-align: center;
+}
+.container {
+  margin-top: 40px;
+}
+h1 {
+  font-size: 36px;
+  text-shadow: 0 0 10px #00ffff;
+}
+.module {
+  background: #111;
+  border: 2px solid #00ffcc;
+  margin: 10px auto;
+  padding: 10px;
+  width: 300px;
+  box-shadow: 0 0 10px #00ffcc;
+}
+.status {
+  color: #ff00ff;
+  font-weight: bold;
+}
+.timestamp {
+  margin-top: 20px;
+  font-size: 14px;
+}
+.btn {
+  background: #ff00ff;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #ff00ff;
+}
+.btn:hover {
+  background: #ff66cc;
+}

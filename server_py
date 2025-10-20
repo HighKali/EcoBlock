@@ -1,0 +1,31 @@
+from flask import Flask, request, jsonify, render_template_string
+from datetime import datetime
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template_string("""
+    <h1>🌍 EcoBlock Dashboard</h1>
+    <ul>
+      <li>🧠 GeoBlock: attivo</li>
+      <li>⚡ EcoEntropy: pronto</li>
+      <li>🧹 EcoPurge: in standby</li>
+      <li>🗺️ EcoMap: sincronizzato</li>
+    </ul>
+    <p>🕒 {{ timestamp }}</p>
+    """, timestamp=datetime.utcnow().isoformat())
+
+@app.route('/node/receive', methods=['POST'])
+def receive():
+    token = request.headers.get('X-ECO-TOKEN')
+    if token != "eco_secret_8090":
+        return jsonify({"error": "Token non valido"}), 403
+    data = request.get_json()
+    if not data or "chain" not in data:
+        return jsonify({"error": "Chain mancante"}), 400
+    print(f"[{datetime.utcnow()}] Ricevuto: {data}")
+    return jsonify({"status": "ok", "received": data}), 200
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8050)

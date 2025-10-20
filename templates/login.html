@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Login</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+  <h1>🔐 Login EcoBlock</h1>
+  <form>
+    <input type="text" placeholder="Username"><br>
+    <input type="password" placeholder="Password"><br>
+    <button class="btn">Login</button>
+  </form>
+  <p>💳 Oppure con <button onclick="connect()">MetaMask</button></p>
+  <script>
+    async function connect() {
+      if (window.ethereum) {
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        alert("Connesso: " + accounts[0]);
+      } else {
+        alert("MetaMask non disponibile");
+      }
+    }
+  </script>
+</body>
+</html>
