@@ -1,60 +1,48 @@
 #!/bin/bash
 echo "🚀 Avvio ecosistema EcoBlock..."
 
-# 1. Avvio miner loop e watchdog
-echo "⛏️ Avvio miner loop..."
+# Miner loop, watchdog, API
 nohup python3 scripts/eco_zsona_miner_loop.py > wallet/miner_loop.log 2>&1 &
-
-echo "🛡️ Avvio watchdog..."
 nohup python3 scripts/eco_miner_guard.py > wallet/miner_guard.log 2>&1 &
-
-# 2. Avvio API reward
-echo "📊 Avvio API reward..."
 nohup python3 scripts/eco_miner_stats.py > wallet/api.log 2>&1 &
 
-# 3. Propagazione chain
-echo "📡 Propagazione chain..."
+# Sync, dashboard, backup
 python3 scripts/eco_miner_syncnet.py
-
-# 4. Generazione dashboard SVG
-echo "🖼️ Generazione dashboard SVG..."
 python3 scripts/eco_miner_ui.py
-
-# 5. Backup automatico
-echo "🗂️ Backup in corso..."
 bash scripts/eco_miner_backup.sh
 
-# 6. Analisi AI e ranking
-echo "🤖 Analisi chain..."
+# AI, ranking, HTML, pulizia, fusione
 python3 scripts/eco_miner_ai.py
-echo "🏆 Classifica address:"
 python3 scripts/eco_miner_rank.py
-
-# 7. Esportazione HTML
-echo "🌐 Esportazione HTML..."
 python3 scripts/eco_miner_export_html.py
-
-# 8. Pulizia e fusione chain
-echo "🧹 Pulizia chain..."
 python3 scripts/eco_miner_clean.py
-echo "🔗 Fusione chain..."
 python3 scripts/eco_miner_fuse.py
 
-# 9. Moduli live aggiuntivi
-echo "🔄 Sync SVG..."
+# Moduli live
 python3 scripts/eco_miner_sync_svg.py
-echo "📄 CSV live..."
 python3 scripts/eco_miner_export_csv_live.py
-echo "📣 Notifica admin..."
 python3 scripts/eco_miner_notify_admin.py
-echo "🖼️ UI SVG live..."
 python3 scripts/eco_miner_ui_live.py
 
-# 10. Aggiornamento repository Git
-echo "📦 Aggiornamento repository..."
+# Temi, sync globale, Matrix, UI pack
+python3 scripts/eco_miner_theme.py
+python3 scripts/eco_miner_sync_all.py
+python3 scripts/eco_miner_notify_matrix.py
+bash scripts/eco_miner_ui_pack.sh
+
+# Moduli finali
+python3 scripts/eco_miner_ui_theme_switcher.py
+python3 scripts/eco_miner_notify_status.py
+python3 scripts/eco_miner_sync_remote.py
+nohup python3 scripts/eco_miner_ui_live_server.py > wallet/ui_server.log 2>&1 &
+nohup python3 scripts/eco_miner_ui_live_refresh.py > wallet/ui_refresh.log 2>&1 &
+python3 scripts/eco_miner_notify_all.py
+python3 scripts/eco_miner_ui_theme_random.py
+
+# Git push
 cd ~/EcoBlock
 git add .
-git commit -m "🔄 Avvio completo con moduli live al 2025-10-20 19:36"
+git commit -m "🔒 Finalizzazione totale: sync, UI, notifiche, temi, server al 2025-10-20 20:16"
 git push
 
-echo "✅ Ecosistema EcoBlock avviato e repository aggiornato"
+echo "✅ Ecosistema EcoBlock blindato e definitivo"
