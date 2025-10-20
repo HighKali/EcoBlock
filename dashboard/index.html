@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoBlock Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="assets/logo.svg" alt="EcoBlock Logo" class="logo" />
+    <h1>EcoBlock Dashboard</h1>
+    <p class="status">Nodo: <span class="online">Online</span></p>
+  </header>
+
+  <nav class="sidebar">
+    <ul>
+      <li><a href="#geoblock">🌍 GeoBlock</a></li>
+      <li><a href="#miner">💰 EcoMiner</a></li>
+      <li><a href="#verify">⚙️ EcoVerify</a></li>
+      <li><a href="#entropy">🧠 EcoEntropy</a></li>
+      <li><a href="#purge">📦 EcoPurge</a></li>
+      <li><a href="#map">🧭 EcoMap</a></li>
+      <li><a href="#sync">🔄 EcoSync</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="geoblock" class="card">
+      <h2>🌍 GeoBlock</h2>
+      <p>IP: <span id="ip">Caricamento...</span></p>
+      <p>Località: <span id="location">---</span></p>
+      <button onclick="generateWallet()">Genera Wallet</button>
+    </section>
+
+    <section id="miner" class="card">
+      <h2>💰 EcoMiner</h2>
+      <p>Pool: <span id="pool">---</span></p>
+      <p>Hashrate: <span id="hashrate">---</span></p>
+      <button onclick="startMiner()">Avvia Miner</button>
+    </section>
+
+    <section id="verify" class="card">
+      <h2>⚙️ EcoVerify</h2>
+      <p>Moduli attivi: <span id="modules">---</span></p>
+      <button onclick="runVerify()">Verifica Moduli</button>
+    </section>
+
+    <section id="entropy" class="card">
+      <h2>🧠 EcoEntropy</h2>
+      <p>Wallet generati: <span id="wallets">---</span></p>
+      <button onclick="generateEntropy()">Genera Entropia</button>
+    </section>
+
+    <section id="purge" class="card">
+      <h2>📦 EcoPurge</h2>
+      <p>File eliminati: <span id="purged">---</span></p>
+      <button onclick="runPurge()">Esegui Purge</button>
+    </section>
+
+    <section id="map" class="card">
+      <h2>🧭 EcoMap</h2>
+      <img src="assets/map.svg" alt="EcoMap" class="map" />
+    </section>
+
+    <section id="sync" class="card">
+      <h2>🔄 EcoSync</h2>
+      <p>Ultimo commit: <span id="commit">---</span></p>
+      <button onclick="runSync()">Pubblica su GitHub</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 EcoBlock. Nodo etico e modulare.</p>
+  </footer>
+  <script src="scripts.js"></script>
+</body>
+</html>

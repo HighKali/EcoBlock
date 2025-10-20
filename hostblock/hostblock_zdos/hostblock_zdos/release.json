@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "date": "2025-10-09",
+  "changes": [
+    "Struttura modulare",
+    "Alias CLI hbserve",
+    "Endpoint RPC attivi",
+    "ZIP finale generato"
+  ],
+  "notes": "HostBlock zDOS è pronto per distribuzione."
+}
