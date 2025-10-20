@@ -1,0 +1,20 @@
+{
+  "project": "EcoBlock",
+  "version": "1.0.0",
+  "author": "Roberto",
+  "launch_script": "eco_secure_launch.sh",
+  "token_required": true,
+  "default_ip": "127.0.0.1",
+  "logging": {
+    "enabled": true,
+    "path": "wallet/eco_log.json"
+  },
+  "notification": {
+    "telegram": true,
+    "env_file": ".env"
+  },
+  "packaging": {
+    "enabled": true,
+    "output": "EcoBlock-blindato.zip"
+  }
+}

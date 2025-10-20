@@ -1,0 +1,6 @@
+<svg width="300" height="100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="100" fill="#222"/>
+  <text x="10" y="30" fill="#0f0" font-size="16">Miner: ZSONA-287a7fd64aed69dd30d3ee9ac5c565da</text>
+  <text x="10" y="55" fill="#0ff" font-size="14">Reward: 104 ZSONA</text>
+  <text x="10" y="80" fill="#fff" font-size="12">Hash: cdbefc2cb685...</text>
+</svg>

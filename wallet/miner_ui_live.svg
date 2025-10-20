@@ -1,0 +1,7 @@
+<svg width="400" height="120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="120" fill="#000"/>
+  <text x="20" y="30" fill="#0ff" font-size="18">EcoBlock Live UI</text>
+  <text x="20" y="60" fill="#fff" font-size="14">Blocco: 172</text>
+  <text x="20" y="80" fill="#0f0" font-size="14">Address: ZSONA-287a7fd64aed69dd30d3ee9ac5c565da</text>
+  <text x="20" y="100" fill="#ff0" font-size="14">Reward: 272 ZSONA</text>
+</svg>

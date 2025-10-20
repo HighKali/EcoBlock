@@ -1,26 +1,24 @@
-from flask import Flask, send_from_directory, request
-import subprocess, os
+from flask import Flask, request, jsonify
+from datetime import datetime
 
-app = Flask(__name__, static_folder="dashboard")
+app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def home():
-    return send_from_directory("dashboard", "index.html")
+    return "✅ EcoBlock Flask server attivo!"
 
-@app.route("/<path:path>")
-def static_files(path):
-    return send_from_directory("dashboard", path)
+@app.route('/node/receive', methods=['POST'])
+def receive():
+    token = request.headers.get('X-ECO-TOKEN')
+    if token != "eco_secret_8090":
+        return jsonify({"error": "Token non valido"}), 403
+    data = request.get_json()
+    print(f"[{datetime.utcnow()}] Ricevuto: {data}")
+    return jsonify({"status": "ok", "received": data}), 200
 
-@app.route("/run/<script>")
-def run(script):
-    args = request.args.get("args", "")
-    path = f"./scripts/{script}.py" if script != "eco_publish" else f"./scripts/{script}.sh"
-    try:
-        cmd = ["bash", path] if path.endswith(".sh") else ["python", path] + args.split(",") if args else ["python", path]
-        result = subprocess.check_output(cmd)
-        return result.decode("utf-8")
-    except Exception as e:
-        return f"❌ Errore: {e}"
+@app.route('/status')
+def status():
+    return jsonify({"status": "EcoBlock attivo", "timestamp": datetime.utcnow().isoformat()})
 
-if __name__ == "__main__":
-    app.run(port=8000)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8050)

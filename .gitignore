@@ -1,8 +1,9 @@
-*.zip
-*.log
-*.pyc
 __pycache__/
-wallet_*.txt
-credentials.txt
-wallet/
-ngrok-stable-linux-arm.zip
+*.pyc
+*.log
+*.zip
+.env
+wallet/eco_log.json
+logs/
+venv/
+.DS_Store
