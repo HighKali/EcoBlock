@@ -4,3 +4,5 @@
 __pycache__/
 wallet_*.txt
 credentials.txt
+wallet/
+ngrok-stable-linux-arm.zip
