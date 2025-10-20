@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EcoBlock Admin</title>
+  <link rel="stylesheet" href="eco_ui_layout.css">
+  <script src="eco_ui_notify.js" defer></script>
+  <script src="eco_ui_live.js" defer></script>
+</head>
+<body>
+  <h1>🛡️ EcoBlock Admin Dashboard</h1>
+  <section>
+    <h2>📦 Ultimi Blocchi</h2>
+    <iframe src="http://127.0.0.1:8060" width="100%" height="400" style="border:none"></iframe>
+  </section>
+  <section>
+    <h2>🌐 Stato Nodo</h2>
+    <iframe src="http://127.0.0.1:8070/status" width="100%" height="100" style="border:none"></iframe>
+  </section>
+  <section>
+    <h2>📊 Statistiche</h2>
+    <iframe src="http://127.0.0.1:8050/stats" width="100%" height="100" style="border:none"></iframe>
+  </section>
+  <section>
+    <h2>💰 Bilancio Live</h2>
+    <div>Bilancio: <span id="zsona-balance-value">--</span> ZSONA</div>
+  </section>
+</body>
+</html>
