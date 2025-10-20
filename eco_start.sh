@@ -40,11 +40,21 @@ python3 scripts/eco_miner_clean.py
 echo "🔗 Fusione chain..."
 python3 scripts/eco_miner_fuse.py
 
-# 9. Aggiornamento repository Git
+# 9. Moduli live aggiuntivi
+echo "🔄 Sync SVG..."
+python3 scripts/eco_miner_sync_svg.py
+echo "📄 CSV live..."
+python3 scripts/eco_miner_export_csv_live.py
+echo "📣 Notifica admin..."
+python3 scripts/eco_miner_notify_admin.py
+echo "🖼️ UI SVG live..."
+python3 scripts/eco_miner_ui_live.py
+
+# 10. Aggiornamento repository Git
 echo "📦 Aggiornamento repository..."
 cd ~/EcoBlock
 git add .
-git commit -m "🔄 Sync miner, dashboard, backup e chain al $(date +'%Y-%m-%d %H:%M')"
+git commit -m "🔄 Avvio completo con moduli live al 2025-10-20 19:36"
 git push
 
 echo "✅ Ecosistema EcoBlock avviato e repository aggiornato"
