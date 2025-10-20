@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request
 import subprocess, os
 
 app = Flask(__name__, static_folder="dashboard")
@@ -13,9 +13,11 @@ def static_files(path):
 
 @app.route("/run/<script>")
 def run(script):
+    args = request.args.get("args", "")
     path = f"./scripts/{script}.py" if script != "eco_publish" else f"./scripts/{script}.sh"
     try:
-        result = subprocess.check_output(["bash", path] if path.endswith(".sh") else ["python", path])
+        cmd = ["bash", path] if path.endswith(".sh") else ["python", path] + args.split(",") if args else ["python", path]
+        result = subprocess.check_output(cmd)
         return result.decode("utf-8")
     except Exception as e:
         return f"❌ Errore: {e}"

@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="eco_ui_layout.css">
+<script src="eco_ui_theme.js" defer></script>
+
+<!-- 🔹 ZSONA Wallet -->
+<section id="zsona">
+  <h2>💰 ZSONA Wallet</h2>
+  <div id="zsona-balance">Bilancio: <span id="zsona-balance-value">--</span> ZSONA</div>
+  <form onsubmit="transferZsona(event)">
+    <input type="text" id="zsona-to" placeholder="Destinatario" required />
+    <input type="number" id="zsona-amount" placeholder="Importo" required />
+    <button type="submit">📤 Invia</button>
+  </form>
+  <div class="controls">
+    <button onclick="mintZsona()">⛏️ Mina ZSONA</button>
+    <button onclick="syncZsona()">🔄 Sync</button>
+    <button onclick="generateZsonaKeys()">🔐 Nuova Chiave</button>
+  </div>
+</section>
+
+<!-- 🔹 ZSONA Wallet -->
+<section id="zsona">
+  <h2>💰 ZSONA Wallet</h2>
+  <div id="zsona-balance">Bilancio: <span id="zsona-balance-value">--</span> ZSONA</div>
+  <form onsubmit="transferZsona(event)">
+    <input type="text" id="zsona-to" placeholder="Destinatario" required />
+    <input type="number" id="zsona-amount" placeholder="Importo" required />
+    <button type="submit">📤 Invia</button>
+  </form>
+  <div class="controls">
+    <button onclick="mintZsona()">⛏️ Mina ZSONA</button>
+    <button onclick="syncZsona()">🔄 Sync</button>
+    <button onclick="generateZsonaKeys()">🔐 Nuova Chiave</button>
+    <button onclick="checkPool()">🌊 Pool Status</button>
+  </div>
+</section>

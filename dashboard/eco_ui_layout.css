@@ -1,0 +1,50 @@
+body {
+  background-color: #0f1117;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+section {
+  margin: 20px;
+  padding: 20px;
+  background: #1a1c24;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,255,200,0.2);
+}
+button {
+  background: #00ffc8;
+  color: #0f1117;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover {
+  background: #00e6b4;
+}
+input {
+  padding: 8px;
+  margin: 5px;
+  border-radius: 6px;
+  border: 1px solid #00ffc8;
+  background: #0f1117;
+  color: #ffffff;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  background: #1a1c24;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 0 10px rgba(0,255,200,0.1);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.02);
+}
