@@ -4,6 +4,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+# 🔐 Ricezione via POST
 @app.route('/node/receive', methods=['POST'])
 def receive():
     token = request.headers.get('X-ECO-TOKEN')
@@ -18,6 +19,7 @@ def receive():
     log_chain_update(data["chain"])
     return jsonify({"status": "ok", "message": "Wallet aggiornato"})
 
+# 🧠 Logging automatico
 def log_chain_update(chain):
     entry = {
         "timestamp": datetime.utcnow().isoformat(),
@@ -29,15 +31,48 @@ def log_chain_update(chain):
     with open("wallet/eco_log.json", "a") as f:
         f.write(json.dumps(entry) + "\n")
 
-@app.route("/")             ; def home(): return send_file("index.html")
-@app.route("/style.css")    ; def style(): return send_file("style.css")
-@app.route("/script.js")    ; def script(): return send_file("script.js")
-@app.route("/report")       ; def report(): return send_file("eco_sync_report.html")
-@app.route("/faucet_dsn")   ; def faucet_dsn(): return "<h2>Modulo attivo: Faucet DSN</h2>"
-@app.route("/faucet_zsona") ; def faucet_zsona(): return "<h2>Modulo attivo: Faucet ZSONA</h2>"
-@app.route("/miner")        ; def miner(): return "<h2>Modulo attivo: Miner Web ZSONA</h2>"
-@app.route("/wallet")       ; def wallet(): return "<h2>Modulo attivo: Wallet</h2>"
-@app.route("/dex")          ; def dex(): return jsonify({"volume_24h": 125000})
-@app.route("/pool")         ; def pool(): return jsonify({"apy": "12.5%"})
+# 🌐 Moduli visivi
+@app.route("/")
+def home():
+    return send_file("index.html")
 
-if __name__ == "__main__": app.run(host="0.0.0.0", port=8050)
+@app.route("/style.css")
+def style():
+    return send_file("style.css")
+
+@app.route("/script.js")
+def script():
+    return send_file("script.js")
+
+@app.route("/report")
+def report():
+    return send_file("eco_sync_report.html")
+
+# 🔘 Moduli attivi
+@app.route("/faucet_dsn")
+def faucet_dsn():
+    return "<h2>Modulo attivo: Faucet DSN</h2>"
+
+@app.route("/faucet_zsona")
+def faucet_zsona():
+    return "<h2>Modulo attivo: Faucet ZSONA</h2>"
+
+@app.route("/miner")
+def miner():
+    return "<h2>Modulo attivo: Miner Web ZSONA</h2>"
+
+@app.route("/wallet")
+def wallet():
+    return "<h2>Modulo attivo: Wallet</h2>"
+
+@app.route("/dex")
+def dex():
+    return jsonify({"volume_24h": 125000})
+
+@app.route("/pool")
+def pool():
+    return jsonify({"apy": "12.5%"})
+
+# 🚀 Avvio server
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8050)
