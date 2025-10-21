@@ -17,6 +17,14 @@ canvas { margin-top: 40px; }
 <tr><th>Timestamp</th><th>Chain ID</th><th>Token</th><th>DEX Volume</th><th>Pool APY</th></tr>
 <tr><td>2025-10-21T13:43:54.677724</td><td>ZSONA-ROBERTO-0001</td><td>0xfc90516a1f736FaC557e09D8853dB80dA192c296</td><td>125000</td><td>12.5%</td></tr>
 <tr><td>2025-10-21T14:27:57.658418</td><td>ZSONA-ROBERTO-0001</td><td>0xfc90516a1f736FaC557e09D8853dB80dA192c296</td><td>125000</td><td>12.5%</td></tr>
+<tr><td>2025-10-21T14:32:59.159728</td><td>ZSONA-ROBERTO-0001</td><td>0xfc90516a1f736FaC557e09D8853dB80dA192c296</td><td>125000</td><td>12.5%</td></tr>
+<tr><td>2025-10-21T14:40:14.300258</td><td>ZSONA-ROBERTO-0001</td><td>0xfc90516a1f736FaC557e09D8853dB80dA192c296</td><td>125000</td><td>12.5%</td></tr>
+<tr><td>2025-10-21T14:45:22.268622</td><td>ZSONA-ROBERTO-0001</td><td>0xfc90516a1f736FaC557e09D8853dB80dA192c296</td><td>125000</td><td>12.5%</td></tr>
+<tr><td>2025-10-21T14:51:20.527502</td><td>ZSONA-ROBERTO-0001</td><td>0xfc90516a1f736FaC557e09D8853dB80dA192c296</td><td>125000</td><td>12.5%</td></tr>
+<tr><td>2025-10-21T14:57:36.506446</td><td>ZSONA-ROBERTO-0001</td><td>0xfc90516a1f736FaC557e09D8853dB80dA192c296</td><td>125000</td><td>12.5%</td></tr>
+<tr><td>2025-10-21T15:13:26.389652</td><td>ZSONA-ROBERTO-0001</td><td>0xfc90516a1f736FaC557e09D8853dB80dA192c296</td><td>125000</td><td>12.5%</td></tr>
+<tr><td>2025-10-21T15:38:40.808286</td><td>ZSONA-ROBERTO-0001</td><td>0xfc90516a1f736FaC557e09D8853dB80dA192c296</td><td>125000</td><td>12.5%</td></tr>
+<tr><td>2025-10-21T15:45:20.314786</td><td>ZSONA-ROBERTO-0001</td><td>0xfc90516a1f736FaC557e09D8853dB80dA192c296</td><td>125000</td><td>12.5%</td></tr>
 </table>
 <canvas id='syncChart' width='800' height='400'></canvas>
 
@@ -25,15 +33,15 @@ const ctx = document.getElementById('syncChart').getContext('2d');
 const chart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['2025-10-21T13:43:54.677724', '2025-10-21T14:27:57.658418'],
+        labels: ['2025-10-21T13:43:54.677724', '2025-10-21T14:27:57.658418', '2025-10-21T14:32:59.159728', '2025-10-21T14:40:14.300258', '2025-10-21T14:45:22.268622', '2025-10-21T14:51:20.527502', '2025-10-21T14:57:36.506446', '2025-10-21T15:13:26.389652', '2025-10-21T15:38:40.808286', '2025-10-21T15:45:20.314786'],
         datasets: [{
             label: 'DEX Volume',
-            data: [125000, 125000],
+            data: [125000, 125000, 125000, 125000, 125000, 125000, 125000, 125000, 125000, 125000],
             borderColor: 'cyan',
             fill: false
         }, {
             label: 'Pool APY',
-            data: [12.5, 12.5],
+            data: [12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5],
             borderColor: 'lime',
             fill: false
         }]

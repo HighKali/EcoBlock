@@ -1,64 +1,46 @@
-from flask import Flask, request, jsonify, render_template
-import json, os
-from datetime import datetime
+from flask import Flask, send_file
 
-app = Flask(__name__, template_folder="templates", static_folder="static")
+app = Flask(__name__)
 
-# 🔐 Modulo ricezione
-@app.route('/node/receive', methods=['POST'])
-def receive():
-    token = request.headers.get('X-ECO-TOKEN')
-    if token != "eco_secret_8090":
-        return jsonify({"error": "Token non valido"}), 403
-    data = request.get_json()
-    if not data or "chain" not in data:
-        return jsonify({"error": "Chain mancante"}), 400
-    os.makedirs("wallet", exist_ok=True)
-    with open("wallet/zsona_chain.json", "w") as f:
-        json.dump(data["chain"], f)
-    log_chain_update(data["chain"])
-    return jsonify({"status": "ok", "message": "Wallet aggiornato con successo"}), 200
+@app.route("/")
+def home():
+    return send_file("index.html")
 
-# 🧠 Logging automatico
-def log_chain_update(chain):
-    entry = {
-        "timestamp": datetime.utcnow().isoformat(),
-        "action": "chain_update",
-        "chain_id": chain.get("chain_id"),
-        "balance": chain.get("balance"),
-        "token": chain.get("token")
-    }
-    os.makedirs("wallet", exist_ok=True)
-    with open("wallet/eco_log.json", "a") as f:
-        f.write(json.dumps(entry) + "\n")
+@app.route("/style.css")
+def style():
+    return send_file("style.css")
 
-# 📡 Endpoint DEX
-@app.route('/dex')
+@app.route("/script.js")
+def script():
+    return send_file("script.js")
+
+@app.route("/faucet_dsn")
+def faucet_dsn():
+    return "<h2>Modulo attivo: Faucet DSN</h2>"
+
+@app.route("/faucet_zsona")
+def faucet_zsona():
+    return "<h2>Modulo attivo: Faucet ZSONA</h2>"
+
+@app.route("/miner")
+def miner():
+    return "<h2>Modulo attivo: Miner Web ZSONA</h2>"
+
+@app.route("/wallet")
+def wallet():
+    return "<h2>Modulo attivo: Wallet</h2>"
+
+@app.route("/dex")
 def dex():
-    return jsonify({
-        "status": "online",
-        "pairs": ["DSN/USDT", "DSN/BTC"],
-        "volume_24h": 125000,
-        "fee": "0.3%",
-        "liquidity": 500000
-    })
+    return "<h2>Modulo attivo: DEX ZSONA/$DSN</h2>"
 
-# 📡 Endpoint Pool
-@app.route('/pool')
+@app.route("/pool")
 def pool():
-    return jsonify({
-        "status": "active",
-        "participants": 42,
-        "total_staked": 750000,
-        "reward_token": "NETkali $DSN",
-        "apy": "12.5%"
-    })
+    return "<h2>Modulo attivo: POOL ZSONA/$DSN</h2>"
 
-# 🖼️ Dashboard retrò
-@app.route('/')
-def dashboard():
-    return render_template("dashboard.html")
+@app.route("/report")
+def report():
+    return send_file("eco_sync_report.html")
 
-# 🚀 Avvio server
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8050)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8050)
