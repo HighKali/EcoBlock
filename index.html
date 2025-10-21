@@ -1,11 +1,69 @@
 <!DOCTYPE html>
-<html><head><title>EcoBlock ZSONA Portal</title><link rel="stylesheet" href="style.css"></head>
-<body><h1>EcoBlock ZSONA Portal</h1><div class="menu">
-<button onclick="go('/faucet_dsn')">Faucet DSN</button>
-<button onclick="go('/faucet_zsona')">Faucet ZSONA</button>
-<button onclick="go('/miner')">Miner Web</button>
-<button onclick="go('/wallet')">Wallet</button>
-<button onclick="go('/dex')">DEX</button>
-<button onclick="go('/pool')">POOL</button>
-<button onclick="go('/report')">Visualizza Report</button>
-</div><script src="script.js"></script></body></html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>🚀 EcoBlock–HostBlock Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">🌐 EcoBlock</div>
+    <ul class="nav-links">
+      <li><a href="/rackchain">🧠 Report</a></li>
+      <li><a href="/dex">📊 DEX</a></li>
+      <li><a href="/login">🔐 Login</a></li>
+      <li>📦 Backup</li>
+      <li>🔁 Sync</li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1>🎛️ RackChain Control Center</h1>
+    <p>Dashboard laser attiva su <strong>127.0.0.1:8050</strong></p>
+    <button id="connectBtn">🔐 Connetti MetaMask</button>
+    <div id="walletStatus"></div>
+  </header>
+
+  <section class="grid">
+    <div class="card ok">
+      <h2>🖥️ Server</h2>
+      <p>Flask attivo</p>
+    </div>
+    <div class="card ok">
+      <h2>🛰️ Sync ZSONA</h2>
+      <p>Ultima sync: <span id="sync-time">--:--</span></p>
+    </div>
+    <div class="card ok">
+      <h2>📊 Volume DEX</h2>
+      <p><span id="dex-volume">--</span></p>
+    </div>
+    <div class="card ok">
+      <h2>📈 APY</h2>
+      <p><span id="dex-apy">--</span></p>
+    </div>
+    <div class="card ok">
+      <h2>📦 Backup</h2>
+      <p>ZIP generato</p>
+    </div>
+    <div class="card warn">
+      <h2>🔐 .env</h2>
+      <p>Variabili mancanti</p>
+    </div>
+    <div class="card ok">
+      <h2>🧠 Moduli</h2>
+      <p>Verifica completata</p>
+    </div>
+    <div class="card ok">
+      <h2>🔔 Notify</h2>
+      <p>Telegram attivo</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>✨ EcoBlock–HostBlock v1.0 — Powered by RackChain</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

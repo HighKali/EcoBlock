@@ -1,41 +1,35 @@
-from flask import Flask, request, jsonify, send_file
-import json, os
-from datetime import datetime
+from flask import Flask, send_file, jsonify
+from flask_socketio import SocketIO, emit
+import os
+import json
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
-# 🔐 Ricezione via POST
-@app.route('/node/receive', methods=['POST'])
-def receive():
-    token = request.headers.get('X-ECO-TOKEN')
-    if token != "eco_secret_8090":
-        return jsonify({"error": "Token non valido"}), 403
-    data = request.get_json()
-    if not data or "chain" not in data:
-        return jsonify({"error": "Chain mancante"}), 400
-    os.makedirs("wallet", exist_ok=True)
-    with open("wallet/zsona_chain.json", "w") as f:
-        json.dump(data["chain"], f)
-    log_chain_update(data["chain"])
-    return jsonify({"status": "ok", "message": "Wallet aggiornato"})
-
-# 🧠 Logging automatico
-def log_chain_update(chain):
-    entry = {
-        "timestamp": datetime.utcnow().isoformat(),
-        "action": "chain_update",
-        "chain_id": chain.get("chain_id"),
-        "balance": chain.get("balance"),
-        "token": chain.get("token_address")
-    }
-    with open("wallet/eco_log.json", "a") as f:
-        f.write(json.dumps(entry) + "\n")
-
-# 🌐 Moduli visivi
+# 🎛️ Dashboard principale
 @app.route("/")
 def home():
     return send_file("index.html")
 
+# 🔐 Login laser
+@app.route("/login")
+def login():
+    return send_file("login.html")
+
+# 🧠 Report neon
+@app.route("/rackchain")
+def rackchain():
+    return send_file("rackchain.html")
+
+# 📊 DEX dinamico
+@app.route("/dex")
+def dex():
+    if os.path.exists("dex_data.json"):
+        return send_file("dex_data.json")
+    else:
+        return jsonify({"error": "DEX non disponibile"}), 404
+
+# 🎨 Asset statici
 @app.route("/style.css")
 def style():
     return send_file("style.css")
@@ -44,35 +38,21 @@ def style():
 def script():
     return send_file("script.js")
 
-@app.route("/report")
-def report():
-    return send_file("eco_sync_report.html")
+# 🔐 Sicurezza fallback
+@app.route("/.env")
+def env_block():
+    return jsonify({"error": "Accesso negato"}), 403
 
-# 🔘 Moduli attivi
-@app.route("/faucet_dsn")
-def faucet_dsn():
-    return "<h2>Modulo attivo: Faucet DSN</h2>"
+# 🔄 Evento WebSocket: sync update
+@socketio.on("request_sync_status")
+def handle_sync_request():
+    if os.path.exists("dex_data.json"):
+        with open("dex_data.json") as f:
+            data = json.load(f)
+        emit("sync_status", data)
+    else:
+        emit("sync_status", {"error": "DEX non disponibile"})
 
-@app.route("/faucet_zsona")
-def faucet_zsona():
-    return "<h2>Modulo attivo: Faucet ZSONA</h2>"
-
-@app.route("/miner")
-def miner():
-    return "<h2>Modulo attivo: Miner Web ZSONA</h2>"
-
-@app.route("/wallet")
-def wallet():
-    return "<h2>Modulo attivo: Wallet</h2>"
-
-@app.route("/dex")
-def dex():
-    return jsonify({"volume_24h": 125000})
-
-@app.route("/pool")
-def pool():
-    return jsonify({"apy": "12.5%"})
-
-# 🚀 Avvio server
+# ✅ Avvio server con WebSocket
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8050)
+    socketio.run(app, host="0.0.0.0", port=8050)

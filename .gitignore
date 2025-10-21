@@ -1,9 +1,3 @@
-__pycache__/
-*.pyc
-*.log
-*.zip
 .env
-wallet/eco_log.json
 logs/
-venv/
-.DS_Store
+*.pyc
