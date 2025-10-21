@@ -1,4 +1,9 @@
 {
-  "id": "ZSONA-ROBERTO-0001",
-  "balance": 1000000
+  "chain_id": "ZSONA-ROBERTO-0001",
+  "public_address": "0x1234567890abcdef...",
+  "balance": 1000000,
+  "token": "NETkali $DSN",
+  "token_address": "0xfc90516a1f736FaC557e09D8853dB80dA192c296",
+  "dex": { "name": "ZSONA DEX", "url": "http://127.0.0.1:8050/dex" },
+  "pool": { "name": "ZSONA Pool", "url": "http://127.0.0.1:8050/pool" }
 }
