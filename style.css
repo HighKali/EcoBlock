@@ -1,26 +1,4 @@
-body {
-  background-color: black;
-  color: #00FF00;
-  font-family: monospace;
-  text-align: center;
-}
-h1 {
-  color: cyan;
-  text-shadow: 0 0 5px #0ff;
-  margin-top: 40px;
-}
-.menu button {
-  background-color: black;
-  border: 2px solid cyan;
-  color: #00FF00;
-  padding: 10px 20px;
-  margin: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 0 10px #0ff;
-}
-.menu button:hover {
-  background-color: #001f1f;
-  color: magenta;
-  border-color: magenta;
-}
+body { background-color: black; color: #00FF00; font-family: monospace; text-align: center; }
+h1 { color: cyan; text-shadow: 0 0 5px #0ff; margin-top: 40px; }
+.menu button { background-color: black; border: 2px solid cyan; color: #00FF00; padding: 10px 20px; margin: 10px; font-size: 16px; cursor: pointer; box-shadow: 0 0 10px #0ff; }
+.menu button:hover { background-color: #001f1f; color: magenta; border-color: magenta; }

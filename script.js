@@ -1,3 +1,1 @@
-function go(route) {
-  window.location.href = route;
-}
+function go(route) { window.location.href = route; }
