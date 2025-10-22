@@ -1,57 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>EcoBlock Dashboard</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="eco_ui_notify.js"></script>
+  <meta charset="UTF-8">
+  <title>EcoBlock Control Panel</title>
+  <link rel="stylesheet" href="../static/style.css">
+  <style>
+    body { background: #0a0a0a; color: #00ffcc; font-family: monospace; text-align: center; }
+    h2 { margin-top: 40px; color: #00ffff; }
+    button { margin: 5px; padding: 10px; font-size: 1em; background: #111; color: #00ffcc; border: 1px solid #00ffff; border-radius: 5px; }
+    .section { margin-top: 30px; }
+  </style>
+  <script>
+    function runScript(scriptName) {
+      fetch('/run/' + scriptName)
+        .then(response => response.text())
+        .then(data => alert(data))
+        .catch(error => alert("❌ Errore: " + error));
+    }
+  </script>
 </head>
 <body>
-  <div class="container">
-    <h1>🌍 EcoBlock Control Panel</h1>
-    <div class="grid">
-      <button onclick="runScript('ecoagent')">🧠 Diagnostica AI</button>
-      <button onclick="runScript('ecoentropy')">🔐 Genera Entropia</button>
-      <button onclick="runScript('eco_sync_status')">📦 Verifica Moduli</button>
-      <button onclick="runScript('eco_log')">📝 Scrivi Log</button>
-      <button onclick="runScript('eco_test_rpc')">🔗 Test RPC</button>
-      <button onclick="runScript('eco_ui_check')">🎨 Verifica UI</button>
-      <button onclick="runScript('eco_publish')">🚀 Pubblica</button>
-<button onclick="runScript('eco_zsona_gen')">🌀 Genera Wallet ZSONA</button>
-<button onclick="runScript('eco_zsona_miner')">⛏️ Mining ZSONA</button>
-<button onclick="runScript('eco_zsona_explorer')">📦 Esplora Blockchain</button>
-<button onclick="runScript('eco_zsona_validator')">🔏 Valida Blocchi</button>
-<button onclick="runScript('eco_zsona_syncnet')">🌐 Sync Nodi</button>
-<button onclick="runScript('eco_zsona_stats')">📊 Statistiche Live</button>
-<button onclick="runScript('eco_zsona_bridge')">🔁 Bridge ZSONA/XMR/DSN</button>
-<button onclick="runScript('eco_zsona_live_panel')">📡 Pannello Live ZSONA</button>
-<button onclick="window.open('templates/eco_zsona_live_panel.html','_live_panel')">📡 Pannello Live Web</button>
-    </div>
-    <pre id="output" class="terminal"></pre>
-<button onclick="runScript('eco_zsona_gen')">🌀 Genera Wallet ZSONA</button>
-<button onclick="runScript('eco_zsona_miner')">⛏️ Mining ZSONA</button>
-<button onclick="runScript('eco_zsona_explorer')">📦 Esplora Blockchain</button>
-<button onclick="runScript('eco_zsona_validator')">🔏 Valida Blocchi</button>
-<button onclick="runScript('eco_zsona_syncnet')">🌐 Sync Nodi</button>
-<button onclick="runScript('eco_zsona_stats')">📊 Statistiche Live</button>
-<button onclick="runScript('eco_zsona_bridge')">🔁 Bridge ZSONA/XMR/DSN</button>
-<button onclick="runScript('eco_zsona_live_panel')">📡 Pannello Live ZSONA</button>
-<button onclick="window.open('templates/eco_zsona_live_panel.html','_live_panel')">📡 Pannello Live Web</button>
+  <h1>🌍 EcoBlock Control Panel</h1>
+
+  <div class="section">
+    <h2>💼 Wallet</h2>
+    <button onclick="runScript('eco_zsona_gen')">🌀 Genera Wallet ZSONA</button>
+    <button onclick="runScript('eco_wallet_check')">🔍 Verifica Wallet</button>
+    <button onclick="runScript('eco_wallet_rotate')">🔄 Ruota Wallet</button>
   </div>
-  <script src="scripts.js"></script>
-<button onclick="runScript('eco_zsona_gen')">🌀 Genera Wallet ZSONA</button>
-<button onclick="runScript('eco_zsona_miner')">⛏️ Mining ZSONA</button>
-<button onclick="runScript('eco_zsona_explorer')">📦 Esplora Blockchain</button>
-<button onclick="runScript('eco_zsona_validator')">🔏 Valida Blocchi</button>
-<button onclick="runScript('eco_zsona_syncnet')">🌐 Sync Nodi</button>
-<button onclick="runScript('eco_zsona_stats')">📊 Statistiche Live</button>
-<button onclick="runScript('eco_zsona_bridge')">🔁 Bridge ZSONA/XMR/DSN</button>
-<button onclick="runScript('eco_zsona_live_panel')">📡 Pannello Live ZSONA</button>
-<button onclick="window.open('templates/eco_zsona_live_panel.html','_live_panel')">📡 Pannello Live Web</button>
-<div style="text-align:center;margin-top:30px;"><img src="assets/badge_founder_zsona.svg" alt="Founder Badge ZSONA" style="max-width:200px;"></div>
-<div style="text-align:center;margin-top:30px;">
-<img src="assets/badge_founder_zsona.svg" alt="Founder Badge ZSONA" style="max-width:200px;">
-<button onclick="runScript('eco_zsona_live_panel')">📡 Pannello Live ZSONA</button>
-<button onclick="window.open('templates/eco_zsona_live_panel.html','_live_panel')">📡 Pannello Live Web</button>
-</div>
+
+  <div class="section">
+    <h2>⛏️ Mining</h2>
+    <button onclick="runScript('eco_zsona_miner')">⛏️ Mining ZSONA</button>
+    <button onclick="runScript('eco_miner_stats')">📊 Statistiche Miner</button>
+    <button onclick="runScript('eco_miner_badge')">🏅 Badge Miner</button>
+  </div>
+
+  <div class="section">
+    <h2>📦 Blockchain</h2>
+    <button onclick="runScript('eco_zsona_explorer')">📦 Esplora Blockchain</button>
+    <button onclick="runScript('eco_zsona_validator')">🔏 Valida Blocchi</button>
+    <button onclick="runScript('eco_zsona_blockchain')">📜 Storico Blockchain</button>
+  </div>
+
+  <div class="section">
+    <h2>🌐 Sync & Nodi</h2>
+    <button onclick="runScript('eco_zsona_syncnet')">🌐 Sync Nodi</button>
+    <button onclick="runScript('eco_zsona_node')">🧠 Avvia Nodo</button>
+    <button onclick="runScript('eco_zsona_stats')">📊 Statistiche Live</button>
+  </div>
+
+  <div class="section">
+    <h2>🔁 Bridge</h2>
+    <button onclick="runScript('eco_zsona_bridge')">🔁 ZSONA ⇄ DSN ⇄ XMR</button>
+  </div>
+
+  <div class="section">
+    <h2>🏅 Badge & Panel</h2>
+    <button onclick="runScript('eco_zsona_live_panel')">📡 Pannello Live</button>
+    <button onclick="window.open('templates/eco_zsona_live_panel.html','_live_panel')">📡 Pannello Web</button>
+  </div>
+
+  <div class="section">
+    <h2>🧪 Diagnostica</h2>
+    <button onclick="runScript('ecoagent')">🧠 Diagnostic AI</button>
+    <button onclick="runScript('ecoentropy')">⚛️ Genera Entropia</button>
+    <button onclick="runScript('eco_sync_status')">🔍 Verifica Moduli</button>
+    <button onclick="runScript('eco_log')">📜 Log Seriali</button>
+    <button onclick="runScript('eco_test_rpc')">🔌 Test RPC</button>
+    <button onclick="runScript('eco_ui_check')">🖥️ Verifica UI</button>
+    <button onclick="runScript('eco_publish')">🚀 Pubblica</button>
+  </div>
 </body>
 </html>
