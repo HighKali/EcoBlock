@@ -1,27 +1,16 @@
-from flask import Flask, send_file, jsonify
-from flask_socketio import SocketIO, emit
+from flask import Flask, send_file, jsonify, render_template
+from flask_socketio import SocketIO
 import os
-import json
 
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-# 🎛️ Dashboard principale
+# 🏠 Home
 @app.route("/")
 def home():
-    return send_file("index.html")
+    return "✅ EcoBlock server attivo"
 
-# 🔐 Login laser
-@app.route("/login")
-def login():
-    return send_file("login.html")
-
-# 🧠 Report neon
-@app.route("/rackchain")
-def rackchain():
-    return send_file("rackchain.html")
-
-# 📊 DEX dinamico
+# 📊 DEX JSON
 @app.route("/dex")
 def dex():
     if os.path.exists("dex_data.json"):
@@ -29,30 +18,55 @@ def dex():
     else:
         return jsonify({"error": "DEX non disponibile"}), 404
 
-# 🎨 Asset statici
-@app.route("/style.css")
-def style():
-    return send_file("style.css")
+# 🪪 Badge NFT
+@app.route("/badges.html")
+def badges():
+    return send_file("badges.html")
 
-@app.route("/script.js")
-def script():
-    return send_file("script.js")
+# 📈 Grafico APY
+@app.route("/chart_apy.html")
+def chart_apy():
+    return send_file("chart_apy.html")
 
-# 🔐 Sicurezza fallback
-@app.route("/.env")
-def env_block():
-    return jsonify({"error": "Accesso negato"}), 403
+# 🗳️ Voto ecoheal
+@app.route("/voto_ecoheal.png")
+def voto():
+    return send_file("voto_ecoheal.png")
 
-# 🔄 Evento WebSocket: sync update
-@socketio.on("request_sync_status")
-def handle_sync_request():
-    if os.path.exists("dex_data.json"):
-        with open("dex_data.json") as f:
-            data = json.load(f)
-        emit("sync_status", data)
-    else:
-        emit("sync_status", {"error": "DEX non disponibile"})
+# 💡 LED log
+@app.route("/dex_led.log")
+def dex_led():
+    return send_file("dex_led.log")
 
-# ✅ Avvio server con WebSocket
+# 🌐 Dashboard laser
+@app.route("/rackchain")
+def rackchain():
+    return send_file("rackchain.html")
+
+# 🛰️ ZSONA Blockchain info
+@app.route("/zsona")
+def zsona():
+    return jsonify({
+        "rpc": "https://rpc.zsona.net",
+        "chain_id": "zsona-mainnet",
+        "explorer": "https://explorer.zsona.net"
+    })
+
+# 🔍 Stato moduli
+@app.route("/status")
+def status():
+    return jsonify({
+        "ecoheal": os.path.exists("ecoheal.log"),
+        "dex": os.path.exists("dex_data.json"),
+        "last_sync": open("dex_data.json").read() if os.path.exists("dex_data.json") else "N/A"
+    })
+
+# 🔔 WebSocket ping
+@socketio.on("ping")
+def handle_ping(data):
+    print("📡 Ping ricevuto:", data)
+    socketio.emit("pong", {"status": "🟢 Server attivo"})
+
+# 🚀 Avvio server
 if __name__ == "__main__":
-    socketio.run(app, host="0.0.0.0", port=8050)
+    socketio.run(app, host="127.0.0.1", port=8050)

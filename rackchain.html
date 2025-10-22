@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>🚀 EcoBlock–HostBlock Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: black;
+      color: #00FFFF;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+    }
+    .led {
+      font-size: 2em;
+      margin: 10px;
+    }
+    iframe {
+      border: none;
+      width: 90%;
+      margin: 10px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚀 EcoBlock–HostBlock Dashboard Laser</h1>
+
+  <!-- LED di stato -->
+  <div class="led">
+    <pre id="led-status">🟡 Attesa sincronizzazione DEX…</pre>
+  </div>
+
+  <!-- Grafico APY -->
+  <iframe src="chart_apy.html" height="300"></iframe>
+
+  <!-- Badge NFT -->
+  <iframe src="badges.html" height="200"></iframe>
+
+  <!-- Voto ecoheal -->
+  <img src="voto_ecoheal.png" alt="Voto ecoheal" width="80%">
+
+  <!-- Link ZSONA -->
+  <p>
+    🌐 <a href="https://explorer.zsona.net" target="_blank" style="color:#00FF00;">Esplora ZSONA Blockchain</a>
+  </p>
+
+  <!-- Timestamp -->
+  <footer>
+    <p style="color:#FF00FF;">Ultimo aggiornamento: <span id="timestamp"></span></p>
+    <p style="color:#888;">Powered by RackChain ✨</p>
+  </footer>
+
+  <script>
+    // LED dinamico da dex_led.log
+    fetch("dex_led.log")
+      .then(r => r.text())
+      .then(txt => document.getElementById("led-status").textContent = txt)
+      .catch(() => document.getElementById("led-status").textContent = "🔴 Errore DEX");
+
+    // Timestamp dinamico
+    document.getElementById("timestamp").textContent = new Date().toLocaleString();
+  </script>
+</body>
+</html>

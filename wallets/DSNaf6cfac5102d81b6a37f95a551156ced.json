@@ -1,0 +1,11 @@
+{
+  "address": "DSNaf6cfac5102d81b6a37f95a551156ced",
+  "private_key": "1f8a4bf5b96bce4059a0039f0877eb6c3bf10bb2da0cfd318ff5579568869738",
+  "balance": 1000000,
+  "symbol": "ZSONA",
+  "compatible_with": [
+    "XMR",
+    "DSN"
+  ],
+  "note": "Algoritmo: CryptoNight-Lite"
+}

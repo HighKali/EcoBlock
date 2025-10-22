@@ -1,0 +1,1 @@
+t=2025-10-21T20:09:39+0000 lvl=warn msg="failed to get home directory, using $HOME instead" err="user: Current requires cgo or $USER set in environment" $HOME=/data/data/com.termux/files/home
