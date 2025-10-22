@@ -1,16 +1,8 @@
 #!/usr/bin/env python3
-import os
+import random
+themes = ["dark", "neon", "retro", "matrix", "solarized"]
+selected = random.choice(themes)
+with open("static/style.css", "w") as f:
+    f.write(f"/* 🌈 Tema attivo: {selected} */\\nbody {{ background: #000; color: #0ff; }}")
+print(f"🎨 Tema dashboard cambiato: {selected}")
 
-THEME_FILE = "dashboard/ui_theme.css"
-
-def switch_theme(mode="dark"):
-    if mode == "light":
-        theme = "body { background:#fff; color:#000; } h1 { color:#0077cc; }"
-    else:
-        theme = "body { background:#000; color:#0ff; } h1 { color:#ff00ff; }"
-    with open(THEME_FILE, "w") as f:
-        f.write(theme)
-    return f"🎨 Tema '{mode}' applicato"
-
-if __name__ == "__main__":
-    print(switch_theme("dark"))

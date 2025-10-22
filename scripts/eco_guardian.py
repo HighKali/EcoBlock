@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
-import json, os
+import time, os
+def check_health():
+    modules = ["eco_zsona_miner", "eco_zsona_syncnet", "eco_zsona_node"]
+    for m in modules:
+        status = os.system(f"pgrep -f {m} > /dev/null")
+        if status != 0:
+            print(f"⚠️ {m} non attivo. Riavvio...")
+            os.system(f"bash scripts/{m}.sh")
+        else:
+            print(f"✅ {m} attivo")
+while True:
+    check_health()
+    time.sleep(60)
 
-CHAIN_FILE = "wallet/zsona_chain.json"
-
-def check_integrity():
-    if not os.path.exists(CHAIN_FILE):
-        return "❌ Chain mancante"
-    with open(CHAIN_FILE) as f:
-        chain = json.load(f)
-    for b in chain:
-        if not all(k in b for k in ["index", "timestamp", "data", "hash"]):
-            print(f"⚠️ Blocco {b.get('index', '?')} incompleto")
-    print("✅ Integrità chain verificata")
-
-if __name__ == "__main__":
-    check_integrity()
