@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ZSONA Live Panel</title>
+  <link rel="stylesheet" href="../static/style.css">
+  <style>
+    body { background: #0a0a0a; color: #00ffcc; font-family: monospace; text-align: center; }
+    .led { font-size: 1.5em; margin: 5px; }
+    .section { margin-top: 30px; }
+    .badge { max-width: 200px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🌐 ZSONA Live Panel</h1>
+  <div class="section">
+    <h2>🕒 Timestamp</h2>
+    <p id="timestamp"></p>
+  </div>
+  <div class="section">
+    <h2>💼 Wallets Attivi</h2>
+    <ul id="wallets"></ul>
+  </div>
+  <div class="section">
+    <h2>🔗 Stato Nodi</h2>
+    <div id="nodes"></div>
+  </div>
+  <div class="section">
+    <h2>⛏️ Mining</h2>
+    <p>🟢 Loop miner attivo</p>
+    <img src="../dashboard/assets/miner_badge.svg" class="badge">
+  </div>
+  <div class="section">
+    <h2>🔄 Sync</h2>
+    <p>🟢 Ultimo sync: 12s fa</p>
+  </div>
+  <div class="section">
+    <h2>🔁 Bridge</h2>
+    <p>ZSONA ⇄ DSN ⇄ XMR attivo</p>
+  </div>
+  <div class="section">
+    <h2>🏅 Founder Badge</h2>
+    <img src="../dashboard/assets/badge_founder_zsona.svg" class="badge">
+  </div>
+  <script>
+    document.getElementById("timestamp").innerText = new Date().toLocaleString();
+    document.getElementById("wallets").innerHTML = "<li>DSNaf6cfac5102d81b6a37f95a551156ced</li>";
+    document.getElementById("nodes").innerHTML = `
+      <div class="led">🟢 node1.zsona.net → OK</div>
+      <div class="led">🟢 node2.zsona.net → OK</div>
+      <div class="led">🔴 node3.zsona.net → FAIL</div>
+    `;
+  </script>
+</body>
+</html>
